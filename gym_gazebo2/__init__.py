@@ -1,8 +1,5 @@
 from gym.envs.registration import register
 
-# Gazebo
-# ----------------------------------------
-# MARA
 register(
     id='MARA-v0',
     entry_point='gym_gazebo2.envs.MARA:MARAEnv',
@@ -37,3 +34,12 @@ register(
     id='MARARandomTarget-v0',
     entry_point='gym_gazebo2.envs.MARA:MARARandomTargetEnv',
 )
+
+register(
+    id='PhantomX-v0',
+    entry_point='gym_gazebo2.envs.PHANTOMX:PHANTOMXEnv',
+)
+
+
+
+
