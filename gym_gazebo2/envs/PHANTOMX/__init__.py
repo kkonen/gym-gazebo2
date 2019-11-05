@@ -1,1 +1,1 @@
-from gym_gazebo2.envs.PHANTOMX.phantomx import PHANTOMXEnv
+from gym_gazebo2.envs.PHANTOMX.phantomx import PHANTOMXEnv, PHANTOMXLEGEnv

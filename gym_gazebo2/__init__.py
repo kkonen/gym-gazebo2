@@ -40,6 +40,9 @@ register(
     entry_point='gym_gazebo2.envs.PHANTOMX:PHANTOMXEnv',
 )
 
-
+register(
+    id='PhantomXLeg-v0',
+    entry_point='gym_gazebo2.envs.PHANTOMX:PHANTOMXLEGEnv',
+)
 
 

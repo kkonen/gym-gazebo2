@@ -79,7 +79,6 @@ def generateLaunchDescriptionPhantomX(gzclient, realSpeed, multiInstance, port, 
             realSpeed: bool   True if RTF must be set to 1, False if RTF must be set to maximum.
     """
     installDir = get_package_prefix('mara_gazebo_plugins')
-
     if 'GAZEBO_MODEL_PATH' in os.environ:
         os.environ['GAZEBO_MODEL_PATH'] = os.environ['GAZEBO_MODEL_PATH'] + ':' + installDir \
         + '/share'
@@ -138,8 +137,10 @@ def generateLaunchDescriptionPhantomX(gzclient, realSpeed, multiInstance, port, 
                  output='screen')
         ])
     else:
+        param_arg = " __params:=" + os.path.dirname(gym_gazebo2.__file__) + "/utils/params.yaml "
         worldPath = os.path.join(os.path.dirname(gym_gazebo2.__file__), 'worlds',
                                  'parcour.world')#'empty__state_plugin__speed_up.world')
+
         launchDesc = LaunchDescription([
             ExecuteProcess(
                 cmd=[gazeboCmd, '--verbose', '-s', 'libgazebo_ros_factory.so', '-s',
