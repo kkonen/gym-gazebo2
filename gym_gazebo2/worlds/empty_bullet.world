@@ -1,6 +1,9 @@
 <?xml version="1.0" ?>
 <sdf version="1.6">
   <world name="default">
+    <!-- Accelerated world. This world pushes gazebo simulation to the maximum
+    the MARA is able to handle. These values seem reasonable and should work-->
+
     <!-- A global light source -->
     <include>
       <uri>model://sun</uri>
