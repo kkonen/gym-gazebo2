@@ -101,7 +101,7 @@ class PHANTOMXEnv(gym.Env):
         args = ut_generic.getArgsParserMARA().parse_args()
         self.gzclient = args.gzclient
         self.realSpeed = args.realSpeed
-        #self.realSpeed = True
+        # self.realSpeed = True
         self.velocity = args.velocity
         self.multiInstance = args.multiInstance
         self.port = args.port
@@ -130,7 +130,7 @@ class PHANTOMXEnv(gym.Env):
         self.node = rclpy.create_node(self.__class__.__name__)
 
         # class variables
-        self.max_episode_steps = 1024
+        self.max_episode_steps = 2048
         self.iterator = 0
         self.reset_jnts = True
         self.ground_truth = None
@@ -145,7 +145,7 @@ class PHANTOMXEnv(gym.Env):
                          + [-2.0] * 6
                          # + [-10] * 1 + [-10] * 1 + [0] * 1 +
                          # + [-10] * 6
-                         # + [-2.8] * 18
+                         + [-2.8] * 18
                          #+ [-10.0, -10.0, -10.0] * 3 * 6
                          # + [0]
                          , -1)
@@ -156,7 +156,7 @@ class PHANTOMXEnv(gym.Env):
                           + [2.0] * 6
                           # + [10] * 1 + [10] * 1 + [2] * 1 +
                           # + [10] * 6
-                          # + [2.8] * 18
+                          + [2.8] * 18
                           #+ [10.0, 10.0, 10.0] * 3 * 6
                           # + [1]
                           , -1)
@@ -203,6 +203,7 @@ class PHANTOMXEnv(gym.Env):
 
         # Seed the environment
         self._body_ground_contact = 0
+        self.idx = 0
         self.seed()
         self.buffer_dist_rewards = []
         self.buffer_tot_rewards = []
@@ -281,7 +282,6 @@ class PHANTOMXEnv(gym.Env):
                 self.limb_odoms[leg + "_" + limb] = None
 
         # Check that the observation is not prior to the action
-
         while self.ground_truth is None or limb_odoms_set is False:
             rclpy.spin_once(self.node)
             limb_odoms_set = True
@@ -289,7 +289,6 @@ class PHANTOMXEnv(gym.Env):
                 if value is None:
                     limb_odoms_set = False
             self.ground_truth = self._ground_truth
-
         limb_positions = []
         limb_orientations = []
         limb_twists_linear = []
@@ -331,7 +330,7 @@ class PHANTOMXEnv(gym.Env):
                       #             self.ground_truth.twist.twist.angular.y,
                       #             self.ground_truth.twist.twist.angular.z,
                       #             ], -1),
-                      #action,
+                      action,
                       #np.reshape(limb_twists_linear, -1),
                       # [self._body_ground_contact]
                       ]
@@ -451,7 +450,7 @@ class PHANTOMXLEGEnv(gym.Env):
     def __init__(self):
         self.leg_name = ""
         self.info = Info(self)
-        self.max_episode_steps = 1024
+        self.max_episode_steps = 2048
         self.num_legs = 1
         self.max_torque = 2.8
         self.idx = 0
@@ -463,7 +462,7 @@ class PHANTOMXLEGEnv(gym.Env):
                          + [-2.0] * 6
                          # + [-10] * 1 + [-10] * 1 + [0] * 1 +
                          # + [-10] * 6
-                         #+ [-2.8] * 3 * 2
+                         + [-2.8] * 3 * 2
                          #+ [-10.0, -10.0, -10.0] * 3 * 3
                          # + [0]
                          , -1)
@@ -474,7 +473,7 @@ class PHANTOMXLEGEnv(gym.Env):
                           + [2.0] * 6
                           # + [10] * 1 + [10] * 1 + [2] * 1 +
                           # + [10] * 6
-                          #+ [2.8] * 3 * 2
+                          + [2.8] * 3 * 2
                           #+ [10.0, 10.0, 10.0] * 3 * 3
                           # + [1]
                           , -1)
@@ -515,9 +514,9 @@ class PHANTOMXLEGEnv(gym.Env):
             obs = np.delete(obs, np.s_[29])
             obs = np.delete(obs, np.s_[30:32])
             # actions
-            #obs = np.delete(obs, np.s_[42:45])
-            #obs = np.delete(obs, np.s_[45:51])
-            #obs = np.delete(obs, np.s_[36:39])
+            obs = np.delete(obs, np.s_[42:45])
+            obs = np.delete(obs, np.s_[45:51])
+            obs = np.delete(obs, np.s_[36:39])
             # linear velocities
             #obs = np.delete(obs, np.s_[72:90])
             #obs = np.delete(obs, np.s_[54:63])
@@ -531,8 +530,8 @@ class PHANTOMXLEGEnv(gym.Env):
 
             obs = np.delete(obs, np.s_[30:33])
 
-            #obs = np.delete(obs, np.s_[45:54])
-            #obs = np.delete(obs, np.s_[39:42])
+            obs = np.delete(obs, np.s_[45:54])
+            obs = np.delete(obs, np.s_[39:42])
 
             #obs = np.delete(obs, np.s_[63:90])
 
@@ -545,9 +544,9 @@ class PHANTOMXLEGEnv(gym.Env):
             obs = np.delete(obs, np.s_[27])
             obs = np.delete(obs, np.s_[29:31])
 
-            #obs = np.delete(obs, np.s_[36:39])
-            #obs = np.delete(obs, np.s_[42:48])
-            #obs = np.delete(obs, np.s_[39:42])
+            obs = np.delete(obs, np.s_[36:39])
+            obs = np.delete(obs, np.s_[42:48])
+            obs = np.delete(obs, np.s_[39:42])
 
             #obs = np.delete(obs, np.s_[63:81])
             #obs = np.delete(obs, np.s_[36:45])
@@ -562,12 +561,12 @@ class PHANTOMXLEGEnv(gym.Env):
             obs = np.delete(obs, np.s_[28:30])
             obs = np.delete(obs, np.s_[30])
 
-            #obs = np.delete(obs, np.s_[39:45])
-            #obs = np.delete(obs, np.s_[45:48])
-            #obs = np.delete(obs, np.s_[39:42])
+            obs = np.delete(obs, np.s_[39:45])
+            obs = np.delete(obs, np.s_[45:48])
+            obs = np.delete(obs, np.s_[39:42])
 
-            #obs = np.delete(obs, np.s_[81:90])
-            #obs = np.delete(obs, np.s_[45:63])
+            # obs = np.delete(obs, np.s_[81:90])
+            # obs = np.delete(obs, np.s_[45:63])
 
 
         if self.leg_name is 'rm':
@@ -577,8 +576,8 @@ class PHANTOMXLEGEnv(gym.Env):
 
             obs = np.delete(obs, np.s_[27:30])
 
-            #obs = np.delete(obs, np.s_[36:45])
-            #obs = np.delete(obs, np.s_[39:42])
+            obs = np.delete(obs, np.s_[36:45])
+            obs = np.delete(obs, np.s_[39:42])
 
             #obs = np.delete(obs, np.s_[36:63])
 
@@ -591,9 +590,9 @@ class PHANTOMXLEGEnv(gym.Env):
             obs = np.delete(obs, np.s_[27:29])
             obs = np.delete(obs, np.s_[28])
 
-            #obs = np.delete(obs, np.s_[36:42])
-            #obs = np.delete(obs, np.s_[39:42])
-            #obs = np.delete(obs, np.s_[42:45])
+            obs = np.delete(obs, np.s_[36:42])
+            obs = np.delete(obs, np.s_[39:42])
+            obs = np.delete(obs, np.s_[42:45])
 
             #obs = np.delete(obs, np.s_[63:72])
             #obs = np.delete(obs, np.s_[36:54])
