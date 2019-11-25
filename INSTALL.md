@@ -1,16 +1,6 @@
 # Installation
 For the complete Phantomx installation, please refer first to the **ROS2Learn** installation instructions:  [github/kkonen/ros2learn/Install](https://github.com/kkonen/ros2learn/blob/master/Install.md).
 
-## Table of Contents
-- [ROS 2.0](#ros-20)
-- [Dependent tools](#dependent-tools)
-- [MARA](#mara)
-  - [Create a ROS workspace](#create-a-ros-workspace)
-  - [Compile the workspace](#compile-the-workspace)
-    - [Ubuntu 18](#ubuntu-18)
-  - [OpenAI Gym](#openai-gym)
-  - [gym-gazebo2](#gym-gazebo2)
-    - [Provisioning](#provisioning)
 
 ## ROS 2.0
 
