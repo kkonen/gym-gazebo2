@@ -78,18 +78,18 @@ def generateLaunchDescriptionPhantomX(gzclient, realSpeed, multiInstance, port, 
         Args:
             realSpeed: bool   True if RTF must be set to 1, False if RTF must be set to maximum.
     """
-    installDir = get_package_prefix('mara_gazebo_plugins')
-    if 'GAZEBO_MODEL_PATH' in os.environ:
-        os.environ['GAZEBO_MODEL_PATH'] = os.environ['GAZEBO_MODEL_PATH'] + ':' + installDir \
-        + '/share'
-    else:
-        os.environ['GAZEBO_MODEL_PATH'] = installDir + "/share"
+#    installDir = get_package_prefix('mara_gazebo_plugins')
+#    if 'GAZEBO_MODEL_PATH' in os.environ:
+#        os.environ['GAZEBO_MODEL_PATH'] = os.environ['GAZEBO_MODEL_PATH'] + ':' + installDir \
+#        + '/share'
+#    else:
+#        os.environ['GAZEBO_MODEL_PATH'] = installDir + "/share"
 
-    if 'GAZEBO_PLUGIN_PATH' in os.environ:
-        os.environ['GAZEBO_PLUGIN_PATH'] = os.environ['GAZEBO_PLUGIN_PATH'] + ':' + installDir \
-        + '/lib'
-    else:
-        os.environ['GAZEBO_PLUGIN_PATH'] = installDir + '/lib'
+#    if 'GAZEBO_PLUGIN_PATH' in os.environ:
+#        os.environ['GAZEBO_PLUGIN_PATH'] = os.environ['GAZEBO_PLUGIN_PATH'] + ':' + installDir \
+#        + '/lib'
+#    else:
+#        os.environ['GAZEBO_PLUGIN_PATH'] = installDir + '/lib'
 
     if port != 11345: # Default gazebo port
         os.environ["ROS_DOMAIN_ID"] = str(port)
