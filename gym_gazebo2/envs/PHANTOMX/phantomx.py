@@ -254,7 +254,7 @@ class PHANTOMXEnv(gym.Env):
             if message.states[0].collision1_name.split("::")[0] == message.states[0].collision2_name.split("::")[0]:
                 self._collision = True
                 return
-            self._contact_msgs[message.states[0].collision1_name.split("::")[1]] = 1
+            self._contact_msgs[message.states[0].collision2_name.split("::")[1]] = 1
 
     def body_contact_callback(self, message):
         if message.states:
