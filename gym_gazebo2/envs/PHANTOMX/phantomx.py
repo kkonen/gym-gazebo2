@@ -130,7 +130,7 @@ class PHANTOMXEnv(gym.Env):
         self.node = rclpy.create_node(self.__class__.__name__)
 
         # class variables
-        self.max_episode_steps = 2048
+        self.max_episode_steps = 1024
         self.iterator = 0
         self.reset_jnts = True
         self.ground_truth = None
@@ -450,7 +450,7 @@ class PHANTOMXLEGEnv(gym.Env):
     def __init__(self):
         self.leg_name = ""
         self.info = Info(self)
-        self.max_episode_steps = 2048
+        self.max_episode_steps = 1024
         self.num_legs = 1
         self.max_torque = 2.8
         self.idx = 0
