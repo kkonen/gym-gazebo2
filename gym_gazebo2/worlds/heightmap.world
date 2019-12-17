@@ -4,6 +4,7 @@
       <uri>model://sun</uri>
     </include>
     <physics type="bullet">
+      <max_contacts>20</max_contacts>
       <max_step_size>0.001</max_step_size>
       <real_time_update_rate>0</real_time_update_rate>
     </physics>
@@ -13,21 +14,19 @@
         <collision name='collision'>
           <geometry>
             <heightmap>
-              <uri>model://heightmap/materials/textures/heightmap_2.png</uri>
-              <size>20 20 0.2</size>
+              <uri>/tmp/heightmap_7.png</uri>
+              <size>20 20 0.5</size>
               <pos>0 0 0</pos>
-              <texture>
-                <size>10</size>
-                <diffuse>__default__</diffuse>
-                <normal>__default__</normal>
-              </texture>
             </heightmap>
           </geometry>
         </collision>
-        <visual name='visual_abcedf'>
+        <visual name='visual'>
           <geometry>
             <heightmap>
-              <use_terrain_paging>0</use_terrain_paging>
+              <uri>/tmp/heightmap_7.png</uri>
+              <size>20 20 0.5</size>
+              <pos>0 0 -0.25</pos>
+              <use_terrain_paging>false</use_terrain_paging>
               <texture>
                 <diffuse>file://media/materials/textures/dirt_diffusespecular.png</diffuse>
                 <normal>file://media/materials/textures/flat_normal.png</normal>
@@ -43,9 +42,14 @@
                 <normal>file://media/materials/textures/flat_normal.png</normal>
                 <size>1</size>
               </texture>
-              <uri>model://heightmap/materials/textures/heightmap_2.png</uri>
-              <size>20 20 0.2</size>
-              <pos>0 0 0</pos>
+              <blend>
+                <min_height>0.2</min_height>
+                <fade_dist>0.5</fade_dist>
+              </blend>
+              <blend>
+                <min_height>0.4</min_height>
+                <fade_dist>0.5</fade_dist>
+              </blend>
             </heightmap>
           </geometry>
         </visual>
@@ -53,7 +57,6 @@
         <enable_wind>0</enable_wind>
         <kinematic>0</kinematic>
       </link>
-      <pose frame=''>-0.297351 0.454851 0 0 -0 0</pose>
     </model>
     <gui fullscreen='0'>
       <camera name='user_camera'>

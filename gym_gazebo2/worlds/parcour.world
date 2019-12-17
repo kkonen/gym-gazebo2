@@ -1,20 +1,63 @@
-<?xml version="1.0" ?>
-<sdf version="1.6">
-  <world name="default">
-    <!-- A global light source -->
+<sdf version='1.6'>
+  <world name='default'>
     <include>
       <uri>model://sun</uri>
     </include>
-    <!-- A ground plane -->
-    <include>
-      <uri>model://ground_plane</uri>
-    </include>
-    <!-- Speed up the simulation to the maximum -->
     <physics type="bullet">
+      <max_contacts>20</max_contacts>
       <max_step_size>0.001</max_step_size>
       <real_time_update_rate>0</real_time_update_rate>
     </physics>
-
+    <model name='heightmap'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <heightmap>
+              <uri>/tmp/heightmap_7.png</uri>
+              <size>20 20 0.5</size>
+              <pos>0 0 0</pos>
+            </heightmap>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <heightmap>
+              <uri>/tmp/heightmap_7.png</uri>
+              <size>20 20 0.5</size>
+              <pos>0 0 -0.25</pos>
+              <use_terrain_paging>false</use_terrain_paging>
+              <texture>
+                <diffuse>file://media/materials/textures/dirt_diffusespecular.png</diffuse>
+                <normal>file://media/materials/textures/flat_normal.png</normal>
+                <size>1</size>
+              </texture>
+              <texture>
+                <diffuse>file://media/materials/textures/grass_diffusespecular.png</diffuse>
+                <normal>file://media/materials/textures/flat_normal.png</normal>
+                <size>1</size>
+              </texture>
+              <texture>
+                <diffuse>file://media/materials/textures/fungus_diffusespecular.png</diffuse>
+                <normal>file://media/materials/textures/flat_normal.png</normal>
+                <size>1</size>
+              </texture>
+              <blend>
+                <min_height>0.2</min_height>
+                <fade_dist>0.5</fade_dist>
+              </blend>
+              <blend>
+                <min_height>0.4</min_height>
+                <fade_dist>0.5</fade_dist>
+              </blend>
+            </heightmap>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
     <gui fullscreen='0'>
       <camera name='user_camera'>
         <pose frame=''>0 -3 1 0 0.3 1.57</pose>
